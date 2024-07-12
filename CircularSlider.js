@@ -123,8 +123,21 @@ class CircularSlider extends HTMLElement {
         this.knob.className = 'knob';
         this.slider.appendChild(this.knob);
 
+        let inside = false;
+
+        this.sliderinside.addEventListener('mousedown', () => {
+            inside = true;
+        });
+
+        document.addEventListener('mouseup', () => {
+            inside = false;
+        });
+
         this.slider.addEventListener('mousedown', (event) => {
             event.preventDefault();
+
+            if (inside) return;
+
             const rect = this.slider.getBoundingClientRect();
 
             const radius = rect.width / 2 - this.knob.getBoundingClientRect().width / 4;
