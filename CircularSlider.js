@@ -164,7 +164,7 @@ class CircularSlider extends HTMLElement {
     setKnobPosition(event) {
         const rect = this.slider.getBoundingClientRect();
 
-        const radius = rect.width / 2 - this.knob.getBoundingClientRect().width / 4;
+        const radius = rect.width / 2 - this.knob.getBoundingClientRect().width / 2 + 2;
 
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;

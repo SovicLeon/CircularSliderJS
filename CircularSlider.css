@@ -9,7 +9,7 @@
     box-sizing: border-box;
     cursor: pointer;
     background-image:
-        repeating-conic-gradient(grey 0deg, grey 7deg, white 7deg, white 8deg);
+        repeating-conic-gradient(darkgrey 0deg, darkgrey 7deg, white 7deg, white 8deg);
 }
 
 .circular-slider-inside {
@@ -18,8 +18,8 @@
     position: absolute;
     margin: auto;
     cursor: default;
-    width: 90%;
-    height: 90%;
+    width: calc(100% - 72px);
+    height: calc(100% - 72px);
     z-index: 2;
 }
 
@@ -36,15 +36,15 @@
 }
 
 .knob {
-    width: 10%;
-    height: 10%;
-    border: 2px grey solid;
+    width: 36px;
+    height: 36px;
+    border: 2px darkgrey solid;
     background-color: white;
     border-radius: 50%;
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -2px);
     cursor: pointer;
     z-index: 3;
 }
