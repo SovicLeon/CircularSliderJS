@@ -86,6 +86,8 @@ class CircularSlider extends HTMLElement {
 
     set value(newValue) {
         this._value = newValue;
+        // event for getting updated value otside the element
+        this.dispatchEvent(new CustomEvent('valueChange', { detail: newValue }));
     }
 
     // method to update options with an object
@@ -184,7 +186,14 @@ class CircularSlider extends HTMLElement {
             angleColor = angleColor + 360;
         }
 
+        // set color gauge with angle
         this.slidercolor.style.background = `conic-gradient(${this.color} 0 ${angleColor}deg, transparent ${angleColor}deg)`;
+
+        // set value
+        this.value = (Math.round(Math.round((angleColor / 360) * (this.maxValue - this.minValue)) / this.step) * this.step) + this.minValue;
+
+        // if value outside maxValue sets value to maxValue
+        if (this.value > this.maxValue) this.value = this.maxValue;
 
         // convert negative angle to positive
         if (angle < 0) {
