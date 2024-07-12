@@ -19,6 +19,9 @@ class CircularSlider extends HTMLElement {
             step: 10,
             radius: 100
         };
+
+        // internal state
+        this._value = this.minValue;
     }
 
     // called when the element is added to the DOM
@@ -73,6 +76,16 @@ class CircularSlider extends HTMLElement {
 
     set radius(value) {
         this._options.radius = value;
+        this.render();
+    }
+
+    // getter and setter for value
+    get value() {
+        return this._value;
+    }
+
+    set value(newValue) {
+        this._value = newValue;
         this.render();
     }
 
