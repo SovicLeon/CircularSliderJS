@@ -6,9 +6,10 @@
     height: 200px;
     border-radius: 50%;
     position: relative;
-    background-color: red;
     box-sizing: border-box;
     cursor: pointer;
+    background-image:
+        repeating-conic-gradient(grey 0deg, grey 7deg, white 7deg, white 8deg);
 }
 
 .circular-slider-inside {
