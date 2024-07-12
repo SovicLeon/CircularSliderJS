@@ -1,4 +1,7 @@
 .circular-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -6,6 +9,17 @@
     background-color: red;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.circular-slider-inside {
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    cursor: default;
+    width: 90%;
+    height: 90%;
+    z-index: 2;
 }
 
 .knob {
@@ -19,5 +33,5 @@
     left: 50%;
     transform: translate(-50%, -25%);
     cursor: pointer;
-    z-index: 1;
+    z-index: 3;
 }

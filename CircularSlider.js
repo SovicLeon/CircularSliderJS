@@ -32,6 +32,10 @@ class CircularSlider extends HTMLElement {
         this.slider.className = 'circular-slider';
         this.container.appendChild(this.slider);
 
+        this.sliderinside = document.createElement('div');
+        this.sliderinside.className = 'circular-slider-inside';
+        this.slider.appendChild(this.sliderinside);
+
         this.knob = document.createElement('div');
         this.knob.className = 'knob';
         this.slider.appendChild(this.knob);
