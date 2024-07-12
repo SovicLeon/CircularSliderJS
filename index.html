@@ -7,6 +7,12 @@
     <script type="module" src="CircularSlider.js"></script>
 </head>
 <body>
-    <circular-slider id="myElement"></circular-slider>
+    <circular-slider id="myElement" />
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const element = document.getElementById('myElement');
+            element.setOptions({ color: 'blue', minValue: 1, maxValue: 200, radius: 300, step: 10 });
+        });
+    </script>
 </body>
 </html>
