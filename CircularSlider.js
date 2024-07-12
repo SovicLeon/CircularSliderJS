@@ -116,7 +116,6 @@ class CircularSlider extends HTMLElement {
 
         this.slidercolor = document.createElement('div');
         this.slidercolor.className = 'circular-slider-color';
-        this.slidercolor.style.backgroundColor = this.color;
         this.slider.appendChild(this.slidercolor);
 
         this.knob = document.createElement('div');
@@ -178,6 +177,14 @@ class CircularSlider extends HTMLElement {
         // calculate angle
         let angle = Math.atan2(dy, dx);
         angle = angle * (180 / Math.PI);
+
+        // get angle from top center as beginning, clockwise
+        let angleColor = angle + 90;
+        if (angleColor < 0) {
+            angleColor = angleColor + 360;
+        }
+
+        this.slidercolor.style.background = `conic-gradient(${this.color} 0 ${angleColor}deg, transparent ${angleColor}deg)`;
 
         // convert negative angle to positive
         if (angle < 0) {
