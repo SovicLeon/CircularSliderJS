@@ -14,16 +14,22 @@ class CircularSlider extends HTMLElement {
 
     // called when the element is added to the DOM
     connectedCallback() {
+        this.loadStyles();
         this.render();
+    }
+
+    // load external styles
+    loadStyles() {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'CircularSlider.css';
+        this.shadowRoot.appendChild(link);
     }
 
     // render the element
     render() {
         this.slider = document.createElement('div');
-        this.slider.style.width = "200px";
-        this.slider.style.height = "200px";
-        this.slider.style.borderRadius = "50%";
-        this.slider.style.backgroundColor = "red";
+        this.slider.className = 'circular-slider';
         this.container.appendChild(this.slider);
     }
 }
