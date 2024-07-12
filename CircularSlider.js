@@ -124,13 +124,21 @@ class CircularSlider extends HTMLElement {
         this.slider.appendChild(this.knob);
 
         let inside = false;
+        let dragging = false;
+        let click = false;
 
         this.sliderinside.addEventListener('mousedown', () => {
             inside = true;
         });
 
+        this.knob.addEventListener('mousedown', () => {
+            dragging = true;
+        });
+
         document.addEventListener('mouseup', () => {
             inside = false;
+            dragging = false;
+            click = false;
         });
 
         this.slider.addEventListener('mousedown', (event) => {
@@ -138,38 +146,52 @@ class CircularSlider extends HTMLElement {
 
             if (inside) return;
 
-            const rect = this.slider.getBoundingClientRect();
+            click = true;
 
-            const radius = rect.width / 2 - this.knob.getBoundingClientRect().width / 4;
-
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-
-            // get coordinates
-            const dx = mouseX - centerX;
-            const dy = mouseY - centerY;
-
-            // calculate angle
-            let angle = Math.atan2(dy, dx);
-            angle = angle * (180 / Math.PI);
-            
-            // convert negative angle to positive
-            if (angle < 0) {
-                angle = 360 + angle;
-            }
-
-            const newX = centerX + radius * Math.cos(angle * Math.PI / 180);
-            const newY = centerY + radius * Math.sin(angle * Math.PI / 180);
-
-            // set new knob position
-            this.knob.style.left = `${newX - rect.left - this.knob.getBoundingClientRect().width / 2}px`;
-            this.knob.style.top = `${newY - rect.top - this.knob.getBoundingClientRect().height / 2}px`;
-
-            this.knob.style.transform = "none";
+            this.setKnobPosition(event);
         });
+
+        document.addEventListener('mousemove', (event) => {
+            event.preventDefault();
+
+            if (!dragging && !click) return;
+
+            this.setKnobPosition(event);
+        });
+    }
+
+    setKnobPosition(event) {
+        const rect = this.slider.getBoundingClientRect();
+
+        const radius = rect.width / 2 - this.knob.getBoundingClientRect().width / 4;
+
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        // get coordinates
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+
+        // calculate angle
+        let angle = Math.atan2(dy, dx);
+        angle = angle * (180 / Math.PI);
+
+        // convert negative angle to positive
+        if (angle < 0) {
+            angle = 360 + angle;
+        }
+
+        const newX = centerX + radius * Math.cos(angle * Math.PI / 180);
+        const newY = centerY + radius * Math.sin(angle * Math.PI / 180);
+
+        // set new knob position
+        this.knob.style.left = `${newX - rect.left - this.knob.getBoundingClientRect().width / 2}px`;
+        this.knob.style.top = `${newY - rect.top - this.knob.getBoundingClientRect().height / 2}px`;
+
+        this.knob.style.transform = "none";
     }
 }
 
