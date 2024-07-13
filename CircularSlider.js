@@ -159,6 +159,36 @@ class CircularSlider extends HTMLElement {
 
             this.setKnobPosition(event);
         });
+
+        this.sliderinside.addEventListener('touchstart', () => {
+            inside = true;
+        });
+
+        this.knob.addEventListener('touchstart', () => {
+            dragging = true;
+        });
+
+        document.addEventListener('touchend', () => {
+            inside = false;
+            dragging = false;
+            click = false;
+        });
+
+        this.slider.addEventListener('touchstart', (event) => {
+            event.preventDefault();
+
+            if (inside) return;
+
+            click = true;
+
+            this.setKnobPosition(event);
+        });
+
+        document.addEventListener('touchmove', (event) => {
+            if (!dragging && !click) return;
+
+            this.setKnobPosition(event);
+        });
     }
 
     setKnobPosition(event) {
@@ -169,8 +199,16 @@ class CircularSlider extends HTMLElement {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
+        let mouseX;
+        let mouseY;
+
+        if (event.type == "touchmove" || event.type == "touchstart") {
+            mouseX = event.touches[0].clientX;
+            mouseY = event.touches[0].clientY;
+        } else {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        }
 
         // get coordinates
         const dx = mouseX - centerX;
