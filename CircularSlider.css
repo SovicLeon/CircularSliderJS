@@ -5,6 +5,8 @@
     position: relative;
     box-sizing: border-box;
     background: inherit;
+    height: inherit;
+    width: inherit;
 }
 
 .circular-slider {
@@ -25,8 +27,6 @@
     position: absolute;
     margin: auto;
     cursor: default;
-    width: calc(100% - 72px);
-    height: calc(100% - 72px);
     z-index: 2;
 }
 

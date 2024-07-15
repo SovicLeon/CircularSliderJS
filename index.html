@@ -9,23 +9,57 @@
         * {
             padding: 0;
             margin: 0;
+            text-decoration: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
 
         .exampleContainer {
+            padding: 16px;
             display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             width: 100%;
-            background-image: linear-gradient(white, darkgrey);
+            background-image: linear-gradient(white, rgb(192, 192, 192));
         }
 
         .valuesContainer {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+        }
+
+        .value {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 250px;
+        }
+
+        .value h1 {
+            width: 84px;
+        }
+
+        .colorCube {
+            width: 16px;
+            height: 8px;
+        }
+
+        .rightContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .floatText {
+            position: absolute;
+            bottom: 0;
         }
 
         /* style so sliders stack inside each other */
         #sliderContainer {
-            height: 300px;
-            width: 300px;
+            height: 700px;
+            width: 600px;
             position: relative;
             padding: 0;
             display: flex;
@@ -35,8 +69,10 @@
         }
 
         #sliderContainer * {
-            background-image: linear-gradient(white, darkgrey);
+            background-image: linear-gradient(white, rgb(192, 192, 192));
             position: absolute;
+            height: 700px;
+            width: 600px;
         }
     </style>
 </head>
@@ -44,10 +80,35 @@
 <body>
     <div class="exampleContainer">
         <div class="valuesContainer">
-            <div id="displayvalue1">0</div>
-            <div id="displayvalue2">0</div>
+            <div class="value">
+                <h1 id="displayvalue1">$0</h1>
+                <span class="colorCube" style="background-color: purple;"></span>
+                <span>Transportation</span>
+            </div>
+            <div class="value">
+                <h1 id="displayvalue2">$0</h1>
+                <span class="colorCube" style="background-color: blue;"></span>
+                <span>Food</span>
+            </div>
+            <div class="value">
+                <h1 id="displayvalue3">$0</h1>
+                <span class="colorCube" style="background-color: green;"></span>
+                <span>Insurance</span>
+            </div>
+            <div class="value">
+                <h1 id="displayvalue4">$0</h1>
+                <span class="colorCube" style="background-color: orange;"></span>
+                <span>Entertainment</span>
+            </div>
+            <div class="value">
+                <h1 id="displayvalue5">$0</h1>
+                <span class="colorCube" style="background-color: red;"></span>
+                <span>Health care</span>
+            </div>
         </div>
-        <div id="sliderContainer">
+        <div class="rightContainer">
+            <div id="sliderContainer"></div>
+            <h2 class="floatText"><i>ADJUST DIAL TO ENTER EXPENSES</i></h2>
         </div>
     </div>
     <script type="module">
@@ -56,18 +117,40 @@
         window.addEventListener('DOMContentLoaded', () => {
             const sliderContainer = document.getElementById('sliderContainer');
 
-            const slider1 = new CircularSlider({ color: 'blue', minValue: 0, maxValue: 10, radius: 300, step: 1, container: 'sliderContainer' });
+            const slider1 = new CircularSlider({ color: 'purple', minValue: 0, maxValue: 1000, radius: 600, step: 10, container: 'sliderContainer', zIndex: 2 });
 
             slider1.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue1');
-                displayvalue.innerHTML = event.detail;
+                displayvalue.innerHTML = `$${event.detail}`;
             });
 
-            const slider2 = new CircularSlider({ color: 'red', minValue: 0, maxValue: 100, radius: 200, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider2 = new CircularSlider({ color: 'blue', minValue: 0, maxValue: 1000, radius: 500, step: 10, container: 'sliderContainer', zIndex: 2 });
 
             slider2.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue2');
-                displayvalue.innerHTML = event.detail;
+                displayvalue.innerHTML = `$${event.detail}`;
+            });
+
+            const slider3 = new CircularSlider({ color: 'green', minValue: 0, maxValue: 1000, radius: 400, step: 10, container: 'sliderContainer', zIndex: 2 });
+
+            slider3.addEventListener('valueChange', (event) => {
+                const displayvalue = document.getElementById('displayvalue3');
+                displayvalue.innerHTML = `$${event.detail}`;
+            });
+
+
+            const slider4 = new CircularSlider({ color: 'orange', minValue: 0, maxValue: 1000, radius: 300, step: 10, container: 'sliderContainer', zIndex: 2 });
+
+            slider4.addEventListener('valueChange', (event) => {
+                const displayvalue = document.getElementById('displayvalue4');
+                displayvalue.innerHTML = `$${event.detail}`;
+            });
+
+            const slider5 = new CircularSlider({ color: 'red', minValue: 0, maxValue: 1000, radius: 200, step: 10, container: 'sliderContainer', zIndex: 2 });
+
+            slider5.addEventListener('valueChange', (event) => {
+                const displayvalue = document.getElementById('displayvalue5');
+                displayvalue.innerHTML = `$${event.detail}`;
             });
         });
     </script>

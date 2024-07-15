@@ -126,8 +126,6 @@ export class CircularSlider extends HTMLElement {
     render() {
         // clear previous content
         this.container.innerHTML = '';
-        this.container.style.width = `${this.radius}px`;
-        this.container.style.height = `${this.radius}px`;
         this.container.className = 'container';
 
         this.slider = document.createElement('div');
@@ -139,6 +137,9 @@ export class CircularSlider extends HTMLElement {
 
         this.sliderinside = document.createElement('div');
         this.sliderinside.className = 'circular-slider-inside';
+        const sliderinsidesize = this.radius - 72;
+        this.sliderinside.style.width = `${sliderinsidesize}px`;
+        this.sliderinside.style.height = `${sliderinsidesize}px`;
         this.container.appendChild(this.sliderinside);
 
         this.slidercolor = document.createElement('div');
