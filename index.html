@@ -6,9 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circular Slider Test</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .exampleContainer {
+            display: flex;
+            width: 100%;
+            background-image: linear-gradient(white, darkgrey);
+        }
+
+        .valuesContainer {
+            display: flex;
+            flex-direction: column;
+        }
+
         /* style so sliders stack inside each other */
         #sliderContainer {
-            height: 500px;
+            height: 300px;
+            width: 300px;
             position: relative;
             padding: 0;
             display: flex;
@@ -18,15 +35,20 @@
         }
 
         #sliderContainer * {
+            background-image: linear-gradient(white, darkgrey);
             position: absolute;
         }
     </style>
 </head>
 
 <body>
-    <div id="displayvalue1">0</div>
-    <div id="displayvalue2">0</div>
-    <div id="sliderContainer">
+    <div class="exampleContainer">
+        <div class="valuesContainer">
+            <div id="displayvalue1">0</div>
+            <div id="displayvalue2">0</div>
+        </div>
+        <div id="sliderContainer">
+        </div>
     </div>
     <script type="module">
         import { CircularSlider } from './CircularSlider.js';
