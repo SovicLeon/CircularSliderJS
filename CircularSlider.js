@@ -17,8 +17,7 @@ export class CircularSlider extends HTMLElement {
             maxValue: 100,
             step: 10,
             radius: 100,
-            container: null,
-            zIndex: 1
+            container: null
         };
 
         // update options with the provided ones
@@ -132,7 +131,6 @@ export class CircularSlider extends HTMLElement {
         this.slider.className = 'circular-slider';
         this.slider.style.width = `${this.radius}px`;
         this.slider.style.height = `${this.radius}px`;
-        this.slider.style.zIndex = this._options.zIndex;
         this.container.appendChild(this.slider);
 
         this.sliderinside = document.createElement('div');

@@ -17,8 +17,8 @@
             padding: 16px;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
             width: 100%;
+            height: 700px;
             background-image: linear-gradient(white, rgb(192, 192, 192));
         }
 
@@ -45,6 +45,7 @@
         }
 
         .rightContainer {
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -58,7 +59,7 @@
 
         /* style so sliders stack inside each other */
         #sliderContainer {
-            height: 700px;
+            height: 100%;
             width: 600px;
             position: relative;
             padding: 0;
@@ -71,7 +72,7 @@
         #sliderContainer * {
             background-image: linear-gradient(white, rgb(192, 192, 192));
             position: absolute;
-            height: 700px;
+            height: 100%;
             width: 600px;
         }
     </style>
@@ -117,21 +118,21 @@
         window.addEventListener('DOMContentLoaded', () => {
             const sliderContainer = document.getElementById('sliderContainer');
 
-            const slider1 = new CircularSlider({ color: 'purple', minValue: 0, maxValue: 1000, radius: 600, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider1 = new CircularSlider({ color: 'purple', minValue: 0, maxValue: 1000, radius: 600, step: 10, container: 'sliderContainer' });
 
             slider1.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue1');
                 displayvalue.innerHTML = `$${event.detail}`;
             });
 
-            const slider2 = new CircularSlider({ color: 'blue', minValue: 0, maxValue: 1000, radius: 500, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider2 = new CircularSlider({ color: 'blue', minValue: 0, maxValue: 1000, radius: 500, step: 10, container: 'sliderContainer' });
 
             slider2.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue2');
                 displayvalue.innerHTML = `$${event.detail}`;
             });
 
-            const slider3 = new CircularSlider({ color: 'green', minValue: 0, maxValue: 1000, radius: 400, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider3 = new CircularSlider({ color: 'green', minValue: 0, maxValue: 1000, radius: 400, step: 10, container: 'sliderContainer' });
 
             slider3.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue3');
@@ -139,14 +140,14 @@
             });
 
 
-            const slider4 = new CircularSlider({ color: 'orange', minValue: 0, maxValue: 1000, radius: 300, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider4 = new CircularSlider({ color: 'orange', minValue: 0, maxValue: 1000, radius: 300, step: 10, container: 'sliderContainer' });
 
             slider4.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue4');
                 displayvalue.innerHTML = `$${event.detail}`;
             });
 
-            const slider5 = new CircularSlider({ color: 'red', minValue: 0, maxValue: 1000, radius: 200, step: 10, container: 'sliderContainer', zIndex: 2 });
+            const slider5 = new CircularSlider({ color: 'red', minValue: 0, maxValue: 1000, radius: 200, step: 10, container: 'sliderContainer' });
 
             slider5.addEventListener('valueChange', (event) => {
                 const displayvalue = document.getElementById('displayvalue5');

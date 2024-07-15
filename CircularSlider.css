@@ -19,6 +19,7 @@
     cursor: pointer;
     background-image:
         repeating-conic-gradient(darkgrey 0deg, darkgrey 4deg, rgba(255, 255, 255, 0) 4deg, rgba(255, 255, 255, 0) 5deg);
+    z-index: 1;
 }
 
 .circular-slider-inside {
@@ -27,7 +28,7 @@
     position: absolute;
     margin: auto;
     cursor: default;
-    z-index: 2;
+    z-index: 1;
 }
 
 .circular-slider-color {
@@ -53,5 +54,5 @@
     left: 50%;
     transform: translate(-50%, -2px);
     cursor: pointer;
-    z-index: 3;
+    z-index: 1;
 }
