@@ -138,7 +138,7 @@ export class CircularSlider extends HTMLElement {
         const sliderinsidesize = this.radius - 72;
         this.sliderinside.style.width = `${sliderinsidesize}px`;
         this.sliderinside.style.height = `${sliderinsidesize}px`;
-        this.container.appendChild(this.sliderinside);
+        this.slider.appendChild(this.sliderinside);
 
         this.slidercolor = document.createElement('div');
         this.slidercolor.className = 'circular-slider-color';
