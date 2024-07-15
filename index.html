@@ -5,28 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circular Slider Test</title>
-    <script type="module" src="CircularSlider.js"></script>
+    <style>
+        /* style so sliders stack inside each other */
+        #sliderContainer {
+            height: 500px;
+            position: relative;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #sliderContainer * {
+            position: absolute;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="displayvalue">0</div>
-    <dir style="position: relative; padding: 0; display: flex; justify-content: center; align-items: center;">
-        <circular-slider id="myElement"></circular-slider>
-        <circular-slider id="myElement2" style="position: absolute; z-index: 2;"></circular-slider>
-    </dir>
-    <script>
+    <div id="displayvalue1">0</div>
+    <div id="displayvalue2">0</div>
+    <div id="sliderContainer">
+    </div>
+    <script type="module">
+        import { CircularSlider } from './CircularSlider.js';
+
         window.addEventListener('DOMContentLoaded', () => {
-            const element = document.getElementById('myElement');
-            element.setOptions({ color: 'blue', minValue: 0, maxValue: 10, radius: 300, step: 1 });
+            const sliderContainer = document.getElementById('sliderContainer');
 
-            const displayvalue = document.getElementById('displayvalue');
+            const slider1 = new CircularSlider({ color: 'blue', minValue: 0, maxValue: 10, radius: 300, step: 1, container: 'sliderContainer' });
 
-            element.addEventListener('valueChange', (event) => {
+            slider1.addEventListener('valueChange', (event) => {
+                const displayvalue = document.getElementById('displayvalue1');
                 displayvalue.innerHTML = event.detail;
             });
 
-            const element2 = document.getElementById('myElement2');
-            element2.setOptions({ color: 'red', minValue: 0, maxValue: 100, radius: 200, step: 10 });
+            const slider2 = new CircularSlider({ color: 'red', minValue: 0, maxValue: 100, radius: 200, step: 10, container: 'sliderContainer', zIndex: 2 });
+
+            slider2.addEventListener('valueChange', (event) => {
+                const displayvalue = document.getElementById('displayvalue2');
+                displayvalue.innerHTML = event.detail;
+            });
         });
     </script>
 </body>

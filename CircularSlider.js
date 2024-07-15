@@ -1,6 +1,5 @@
-// Define the custom element class
-class CircularSlider extends HTMLElement {
-    constructor() {
+export class CircularSlider extends HTMLElement {
+    constructor(options = {}) {
         super();
 
         // shadow DOM
@@ -17,8 +16,13 @@ class CircularSlider extends HTMLElement {
             minValue: 0,
             maxValue: 100,
             step: 10,
-            radius: 100
+            radius: 100,
+            container: null,
+            zIndex: 1
         };
+
+        // update options with the provided ones
+        this.setOptions(options);
 
         // internal state
         this._value = this.minValue;
@@ -27,6 +31,7 @@ class CircularSlider extends HTMLElement {
     // called when the element is added to the DOM
     connectedCallback() {
         this.loadStyles();
+        this.render();
     }
 
     // getter and setter for color
@@ -79,6 +84,16 @@ class CircularSlider extends HTMLElement {
         this.render();
     }
 
+    // getter and setter for container
+    get containerId() {
+        return this._options.container;
+    }
+
+    set containerId(value) {
+        this._options.container = value;
+        this.render();
+    }
+
     // getter and setter for value
     get value() {
         return this._value;
@@ -86,13 +101,16 @@ class CircularSlider extends HTMLElement {
 
     set value(newValue) {
         this._value = newValue;
-        // event for getting updated value otside the element
+        // event for getting updated value outside the element
         this.dispatchEvent(new CustomEvent('valueChange', { detail: newValue }));
     }
 
     // method to update options with an object
     setOptions(options) {
         this._options = { ...this._options, ...options };
+        if (options.container) {
+            document.getElementById(options.container).appendChild(this);
+        }
         this.render();
     }
 
@@ -106,10 +124,14 @@ class CircularSlider extends HTMLElement {
 
     // render the element
     render() {
+        // clear previous content
+        this.container.innerHTML = '';
         this.slider = document.createElement('div');
         this.slider.className = 'circular-slider';
         this.slider.style.width = `${this.radius}px`;
         this.slider.style.height = `${this.radius}px`;
+        this.slider.style.zIndex = this._options.zIndex;
+
         this.container.appendChild(this.slider);
 
         this.sliderinside = document.createElement('div');
