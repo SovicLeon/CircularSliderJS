@@ -7,7 +7,7 @@
     box-sizing: border-box;
     cursor: pointer;
     background-image:
-        repeating-conic-gradient(darkgrey 0deg, darkgrey 4deg, rgba(255, 255, 255, 0) 4deg, rgba(255, 255, 255, 0) 5deg);
+        repeating-conic-gradient(darkgrey 0deg, darkgrey 4deg, transparent 4deg, transparent 5deg);
     z-index: 1;
 }
 
@@ -17,6 +17,8 @@
     position: absolute;
     margin: auto;
     cursor: default;
+    width: calc(100% - 72px);
+    height: calc(100% - 72px);
     z-index: 2;
 }
 

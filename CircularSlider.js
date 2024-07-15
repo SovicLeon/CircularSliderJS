@@ -7,7 +7,6 @@ export class CircularSlider extends HTMLElement {
 
         // container for the element
         this.container = document.createElement('div');
-        this.container.className = 'container';
         this.shadowRoot.appendChild(this.container);
 
         // default options
@@ -16,7 +15,7 @@ export class CircularSlider extends HTMLElement {
             minValue: 0,
             maxValue: 100,
             step: 10,
-            radius: 100,
+            radius: 200,
             container: null
         };
 
@@ -90,6 +89,7 @@ export class CircularSlider extends HTMLElement {
 
     set containerId(value) {
         this._options.container = value;
+        document.getElementById(this.containerId).appendChild(this);
         this.render();
     }
 
@@ -125,7 +125,6 @@ export class CircularSlider extends HTMLElement {
     render() {
         // clear previous content
         this.container.innerHTML = '';
-        this.container.className = 'container';
 
         this.slider = document.createElement('div');
         this.slider.className = 'circular-slider';
@@ -135,9 +134,6 @@ export class CircularSlider extends HTMLElement {
 
         this.sliderinside = document.createElement('div');
         this.sliderinside.className = 'circular-slider-inside';
-        const sliderinsidesize = this.radius - 72;
-        this.sliderinside.style.width = `${sliderinsidesize}px`;
-        this.sliderinside.style.height = `${sliderinsidesize}px`;
         this.slider.appendChild(this.sliderinside);
 
         this.slidercolor = document.createElement('div');
@@ -152,7 +148,8 @@ export class CircularSlider extends HTMLElement {
         let dragging = false;
         let click = false;
 
-        this.sliderinside.addEventListener('mousedown', () => {
+        this.sliderinside.addEventListener('mousedown', (event) => {
+            event.preventDefault();
             inside = true;
         });
 

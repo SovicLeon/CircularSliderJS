@@ -30,7 +30,7 @@
         .value {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 16px;
             width: 250px;
         }
 
@@ -107,6 +107,7 @@
             <div id="sliderContainer"></div>
             <h2 class="floatText"><i>ADJUST DIAL TO ENTER EXPENSES</i></h2>
         </div>
+        <div id="sliderContainer2"></div>
     </div>
     <script type="module">
         import { CircularSlider } from './CircularSlider.js';
@@ -149,6 +150,19 @@
                 const displayvalue = document.getElementById('displayvalue5');
                 displayvalue.innerHTML = `$${event.detail}`;
             });
+
+            /*
+            // setters and setOptions test
+            slider5.color = "yellow";
+            slider5.radius = 150;
+            slider5.minValue = 20;
+            slider5.maxValue = 120;
+            slider5.step = 20;
+
+            slider5.setOptions({ color: 'blue', minValue: 50, maxValue: 200, radius: 200, step: 5, container: "sliderContainer2" });
+
+            slider5.containerId = "sliderContainer";
+            */
         });
     </script>
 </body>
