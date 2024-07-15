@@ -2,14 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
     position: relative;
     box-sizing: border-box;
     cursor: pointer;
     background-image:
-        repeating-conic-gradient(darkgrey 0deg, darkgrey 7deg, white 7deg, white 8deg);
+        repeating-conic-gradient(darkgrey 0deg, darkgrey 4deg, rgba(255, 255, 255, 0) 4deg, rgba(255, 255, 255, 0) 5deg);
 }
 
 .circular-slider-inside {
